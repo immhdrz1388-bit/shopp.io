@@ -6,175 +6,34 @@
   <link href="https://cdn.jsdelivr.net/npm/vazir-font@26.0.2/dist/font-face.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    * {
-      font-family: Vazir, sans-serif !important;
-      user-select: none;
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #f0f4f1, #dfe6e2);
-      overflow-x: hidden;
-      touch-action: manipulation;
-    }
-
+    * { font-family: Vazir, sans-serif !important; user-select: none; box-sizing: border-box; }
+    body { margin: 0; background: linear-gradient(135deg, #f0f4f1, #dfe6e2); overflow-x: hidden; touch-action: manipulation; }
     html { scroll-behavior: smooth; }
 
-    .topbar {
-      background: linear-gradient(90deg, #1b4332, #2d6a4f);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      animation: slideDown 1s ease;
-    }
+    .topbar { background: linear-gradient(90deg, #1b4332, #2d6a4f); color: #fff; text-align: center; padding: 20px; font-size: 26px; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); animation: slideDown 1s ease; }
+    @keyframes slideDown { from {transform: translateY(-100%); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
 
-    @keyframes slideDown {
-      from {transform: translateY(-100%); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-
-    .navbar {
-      background: linear-gradient(90deg, #2d6a4f, #1b4332);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease;
-    }
-
-    .navbar a {
-      color: #fff;
-      text-align: center;
-      padding: 18px 30px;
-      text-decoration: none;
-      position: relative;
-      transition: all 0.3s ease;
-      font-size: 18px;
-    }
-
-    .navbar a:hover {
-      background-color: rgba(255,255,255,0.15);
-      border-radius: 5px;
-      transform: scale(1.05);
-    }
-
-    .navbar a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background-color: #ffd60a;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
+    .navbar { background: linear-gradient(90deg, #2d6a4f, #1b4332); display: flex; flex-wrap: wrap; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); animation: fadeIn 1.5s ease; }
+    .navbar a { color: #fff; text-align: center; padding: 18px 30px; text-decoration: none; position: relative; transition: all 0.3s ease; font-size: 18px; }
+    .navbar a:hover { background-color: rgba(255,255,255,0.15); border-radius: 5px; transform: scale(1.05); }
+    .navbar a::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background-color: #ffd60a; transition: all 0.3s ease; transform: translateX(-50%); }
     .navbar a:hover::after { width: 70%; }
+    #cart-count { background: #ffd60a; color: #1b4332; font-weight: bold; padding: 2px 8px; border-radius: 12px; margin-right: 5px; }
 
-    #cart-count {
-      background: #ffd60a;
-      color: #1b4332;
-      font-weight: bold;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-right: 5px;
-    }
+    .content { padding: 30px; text-align: center; animation: fadeInUp 1.2s ease; color: #1b4332; }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
 
-    .content {
-      padding: 30px;
-      text-align: center;
-      animation: fadeInUp 1.2s ease;
-      color: #1b4332;
-    }
-
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    .product-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      padding: 10px;
-      animation: zoomIn 1s ease;
-    }
-
-    @keyframes zoomIn {
-      from {transform: scale(0.8); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transform: scale(0.9);
-      transition: transform 0.4s ease;
-    }
-
+    .product-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 25px; }
+    .product-card { background: #fff; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.2); overflow: hidden; text-align: center; transition: transform 0.4s ease, box-shadow 0.4s ease; padding: 10px; animation: zoomIn 1s ease; }
+    @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    .product-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 8px 16px rgba(0,0,0,0.25); }
+    .product-card img { width: 100%; height: auto; display: block; transform: scale(0.9); transition: transform 0.4s ease; }
     .product-card:hover img { transform: scale(1); }
-
-    .product-card h3 {
-      margin: 8px 0;
-      font-size: 16px;
-      color: #1b4332;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .price {
-      font-size: 16px;
-      font-weight: bold;
-      color: #2d6a4f;
-      margin: 4px 0 10px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .product-card button {
-      background: linear-gradient(90deg, #2d6a4f, #40916c);
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-bottom: 8px;
-      font-size: 14px;
-      animation: bounceIn 1.2s ease;
-    }
-
-    @keyframes bounceIn {
-      0% {transform: scale(0.8); opacity: 0;}
-      60% {transform: scale(1.1); opacity: 1;}
-      100% {transform: scale(1);}
-    }
-
-    .product-card button:hover {
-      background: #52b788;
-      transform: scale(1.08);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    .product-card h3 { margin: 8px 0; font-size: 16px; color: #1b4332; animation: fadeIn 1.5s ease; }
+    .price { font-size: 16px; font-weight: bold; color: #2d6a4f; margin: 4px 0 10px; animation: fadeIn 1.5s ease; }
+    .product-card button { background: linear-gradient(90deg, #2d6a4f, #40916c); color: #fff; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 8px; font-size: 14px; animation: bounceIn 1.2s ease; }
+    @keyframes bounceIn { 0% {transform: scale(0.8); opacity: 0;} 60% {transform: scale(1.1); opacity: 1;} 100% {transform: scale(1);} }
+    .product-card button:hover { background: #52b788; transform: scale(1.08); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
     @media (max-width: 600px) {
       .product-container { grid-template-columns: repeat(2, 1fr); }
@@ -220,13 +79,13 @@
         <p class="price">1.500.000 تومان</p>
         <button>🛒 افزودن به سبد</button>
       </div>
-            <div class="product-card">
+      <div class="product-card">
         <img src="images/shalver bag.jpg" alt="شلوار بگ">
         <h3>شلوار بگ</h3>
         <p class="price">1.300.000 تومان</p>
         <button>🛒 افزودن به سبد</button>
       </div>
-            <div class="product-card">
+      <div class="product-card">
         <img src="images/newbalance.jpg" alt="کتونی نیوبالانس">
         <h3>کتونی نیوبالانس 425</h3>
         <p class="price">1.600.000 تومان</p>
@@ -235,7 +94,7 @@
     </div>
   </div>
 
-  <!-- اسکریپت مدیریت سبد خرید -->
+    <!-- اسکریپت مدیریت سبد خرید -->
   <script>
     // بروزرسانی شمارنده هنگام بارگذاری صفحه
     window.onload = function() {
@@ -246,15 +105,17 @@
     // افزودن محصول به سبد خرید
     document.querySelectorAll('.product-card button').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const product = btn.parentElement.querySelector('h3').innerText;
-        const priceText = btn.parentElement.querySelector('.price').innerText;
+        const card = btn.parentElement;
+        const product = card.querySelector('h3').innerText;
+        const priceText = card.querySelector('.price').innerText;
         const price = parseInt(priceText.replace(/\D/g, ''));
+        const image = card.querySelector('img').getAttribute('src');
 
         // گرفتن سبد خرید از localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // اضافه کردن محصول جدید
-        cart.push({ product, price });
+        // اضافه کردن محصول جدید با تصویر
+        cart.push({ product, price, image });
 
         // ذخیره دوباره در localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -299,4 +160,3 @@
   </script>
 </body>
 </html>
-
