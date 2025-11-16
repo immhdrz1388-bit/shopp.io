@@ -6,7 +6,6 @@
   <link href="https://cdn.jsdelivr.net/npm/vazir-font@26.0.2/dist/font-face.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    /* فونت یکسان برای همه */
     * {
       font-family: Vazir, sans-serif !important;
       user-select: none;
@@ -20,12 +19,8 @@
       touch-action: manipulation;
     }
 
-    /* اسکرول نرم */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
-    /* نوار بالایی */
     .topbar {
       background: linear-gradient(90deg, #1b4332, #2d6a4f);
       color: #fff;
@@ -43,7 +38,6 @@
       to {transform: translateY(0); opacity: 1;}
     }
 
-    /* نوار افقی */
     .navbar {
       background: linear-gradient(90deg, #2d6a4f, #1b4332);
       display: flex;
@@ -81,11 +75,17 @@
       transform: translateX(-50%);
     }
 
-    .navbar a:hover::after {
-      width: 70%;
+    .navbar a:hover::after { width: 70%; }
+
+    #cart-count {
+      background: #ffd60a;
+      color: #1b4332;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-right: 5px;
     }
 
-    /* محتوای اصلی */
     .content {
       padding: 30px;
       text-align: center;
@@ -98,7 +98,6 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* کانتینر کارت‌ها */
     .product-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -106,7 +105,6 @@
       margin-top: 25px;
     }
 
-    /* کارت محصول */
     .product-card {
       background: #fff;
       border-radius: 12px;
@@ -136,9 +134,7 @@
       transition: transform 0.4s ease;
     }
 
-    .product-card:hover img {
-      transform: scale(1);
-    }
+    .product-card:hover img { transform: scale(1); }
 
     .product-card h3 {
       margin: 8px 0;
@@ -180,20 +176,12 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* واکنش‌گرایی برای موبایل */
     @media (max-width: 600px) {
-      .product-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .product-container { grid-template-columns: repeat(2, 1fr); }
       .product-card h3 { font-size: 14px; }
       .price { font-size: 15px; }
-      .product-card button {
-        width: 85%;
-        font-size: 14px;
-      }
-      .product-card img {
-        transform: scale(0.85);
-      }
+      .product-card button { width: 85%; font-size: 14px; }
+      .product-card img { transform: scale(0.85); }
     }
   </style>
 </head>
@@ -203,7 +191,7 @@
     <a href="#about">ℹ️ درباره ما</a>
     <a href="#offline">🏬 حضوری</a>
     <a href="#support">📞 پشتیبانی</a>
-    <a href="#cart">🛒 سبد خرید</a>
+    <a href="basket.html">🛒 سبد خرید <span id="cart-count">0</span></a>
   </div>
   <div class="content">
     <h1>به فروشگاه محمدرضا خوش آمدید</h1>
@@ -232,16 +220,52 @@
         <p class="price">1.500.000 تومان</p>
         <button>🛒 افزودن به سبد</button>
       </div>
-      <div class="product-card">
+            <div class="product-card">
         <img src="images/shalver bag.jpg" alt="شلوار بگ">
         <h3>شلوار بگ</h3>
         <p class="price">1.300.000 تومان</p>
         <button>🛒 افزودن به سبد</button>
       </div>
+            <div class="product-card">
+        <img src="images/newbalance.jpg" alt="کتونی نیوبالانس">
+        <h3>کتونی نیوبالامس 425</h3>
+        <p class="price">1.600.000 تومان</p>
+        <button>🛒 افزودن به سبد</button>
+      </div>
     </div>
   </div>
-  <!-- اسکریپت جلوگیری از زوم و اسکرول نرم -->
+
+  <!-- اسکریپت مدیریت سبد خرید -->
   <script>
+    // بروزرسانی شمارنده هنگام بارگذاری صفحه
+    window.onload = function() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').innerText = cart.length;
+    };
+
+    // افزودن محصول به سبد خرید
+    document.querySelectorAll('.product-card button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const product = btn.parentElement.querySelector('h3').innerText;
+        const priceText = btn.parentElement.querySelector('.price').innerText;
+        const price = parseInt(priceText.replace(/\D/g, ''));
+
+        // گرفتن سبد خرید از localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // اضافه کردن محصول جدید
+        cart.push({ product, price });
+
+        // ذخیره دوباره در localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // بروزرسانی شمارنده
+        document.getElementById('cart-count').innerText = cart.length;
+
+        alert("✅ محصول به سبد خرید اضافه شد!");
+      });
+    });
+
     // جلوگیری از Ctrl + Scroll
     document.addEventListener('wheel', function(e) {
       if (e.ctrlKey) e.preventDefault();
@@ -275,3 +299,4 @@
   </script>
 </body>
 </html>
+
