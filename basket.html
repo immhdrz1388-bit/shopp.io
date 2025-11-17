@@ -13,9 +13,9 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;   /* جلوگیری از اسکرول افقی */
-      overflow-y: auto;     /* اگر محتوا بیشتر شد اسکرول عمودی ایجاد شود */
-      touch-action: manipulation; /* جلوگیری از pinch zoom در موبایل */
+      overflow-x: hidden;
+      overflow-y: auto;
+      touch-action: manipulation;
       background: linear-gradient(135deg, #f0f4f1, #dfe6e2);
       text-align: center;
       color: #1b4332;
@@ -175,7 +175,27 @@
       h1 { font-size: 24px; }
       .total { font-size: 18px; }
       .btn { width: 100%; text-align: center; }
-      li { flex-direction: column; align-items: flex-start; }
+
+      /* تغییرات مهم برای آیتم‌ها */
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      li div {
+        width: 100%;
+        margin-top: 8px;
+        justify-content: space-between;
+      }
+
+      li img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .qty-btn, .remove-btn {
+        margin-top: 5px;
+      }
     }
   </style>
 </head>
@@ -220,16 +240,19 @@
 
         const li = document.createElement('li');
         li.innerHTML = `
-          <div style="flex: 1; display:flex; align-items:center; gap:10px; direction:ltr; text-align:left;">
-            <img src="${item.image || 'images/default.png'}" alt="${item.product}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
-            <span style="unicode-bidi: plaintext;">${item.product}</span>
-            <span>- ${(item.price * item.quantity).toLocaleString()} تومان</span>
-          </div>
-          <div style="display: flex; align-items: center;">
-            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-            <button class="remove-btn" onclick="removeItem(${index})">حذف</button>
-          </div>
-        `;
+  <div style="flex: 1; display:flex; align-items:center; gap:10px; direction:ltr; text-align:left;">
+    <img src="${item.image || 'images/default.png'}" alt="${item.product}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
+    <span style="unicode-bidi: plaintext;">${item.product}</span>
+    <span>- ${(item.price * item.quantity).toLocaleString()} تومان</span>
+  </div>
+  <div style="display: flex; align-items: center;">
+    <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+    <span style="margin: 0 5px;">${item.quantity}</span>
+    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+    <button class="remove-btn" onclick="removeItem(${index})">حذف</button>
+  </div>
+`;
+
         itemsList.appendChild(li);
         total += item.price * item.quantity;
       });
