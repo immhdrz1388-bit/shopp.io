@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>پشتیبانی | فروشگاه محمدرضا</title>
+  <link href="https://cdn.jsdelivr.net/npm/vazir-font@26.0.2/dist/font-face.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    * { font-family: Vazir, sans-serif !important; user-select: none; box-sizing: border-box; }
+    body { margin: 0; background: linear-gradient(135deg, #f0f4f1, #dfe6e2); overflow-x: hidden; touch-action: manipulation; }
+    html { scroll-behavior: smooth; }
+
+    .topbar { background: linear-gradient(90deg, #1b4332, #2d6a4f); color: #fff; text-align: center; padding: 20px; font-size: 26px; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); animation: slideDown 1s ease; }
+    @keyframes slideDown { from {transform: translateY(-100%); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+
+    .navbar { background: linear-gradient(90deg, #2d6a4f, #1b4332); display: flex; flex-wrap: wrap; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); animation: fadeIn 1.5s ease; }
+    .navbar a { color: #fff; text-align: center; padding: 18px 30px; text-decoration: none; position: relative; transition: all 0.3s ease; font-size: 18px; }
+    .navbar a:hover { background-color: rgba(255,255,255,0.15); border-radius: 5px; transform: scale(1.05); }
+    .navbar a::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background-color: #ffd60a; transition: all 0.3s ease; transform: translateX(-50%); }
+    .navbar a:hover::after { width: 70%; }
+
+    .content { padding: 30px; text-align: center; animation: fadeInUp 1.2s ease; color: #1b4332; }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+
+    .support-box { max-width: 600px; margin: auto; background: #fff; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.2); padding: 20px; animation: zoomIn 1s ease; }
+    @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+
+    .support-box h2 { color: #2d6a4f; margin-bottom: 15px; }
+    .support-box p { margin: 8px 0; font-size: 16px; }
+
+    form { text-align: left; }
+    label { display: block; margin: 8px 0 4px; color: #1b4332; }
+    input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 12px; font-size: 14px; }
+    button { background: linear-gradient(90deg, #2d6a4f, #40916c); color: #fff; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-size: 15px; }
+    button:hover { background: #52b788; transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+    .back-btn { display: inline-block; margin-top: 15px; background: linear-gradient(90deg, #2d6a4f, #40916c); color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
+    .back-btn:hover { background: #52b788; transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+    @media (max-width: 600px) {
+      .navbar a { padding: 12px 20px; font-size: 16px; }
+      .support-box { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">پشتیبانی فروشگاه محمدرضا</div>
+
+  <div class="content">
+    <div class="support-box" id="contact">
+      <h2>📞 ارتباط با پشتیبانی</h2>
+      <p>☎️ شماره تماس: 
+        <a href="tel:09927571901">09927571901</a>
+      </p>
+      <p>💬 واتساپ: <a href="https://wa.me/989927571901" target="_blank">شروع گفتگو</a></p>
+
+      <form>
+        <label>نام:</label>
+        <input type="text" required>
+        <label>پیام:</label>
+        <textarea rows="4" required></textarea>
+        <button type="submit">ارسال پیام</button>
+      </form>
+
+      <a href="index.html" class="back-btn">⬅️ بازگشت به فروشگاه</a>
+    </div>
+
+    <div class="support-box" id="faq" style="margin-top:30px;">
+      <h2>❓ سوالات متداول</h2>
+      <p><b>چطور سفارش ثبت کنم؟</b><br> کافیست محصول را به سبد خرید اضافه کنید و مراحل پرداخت را انجام دهید.</p>
+      <p><b>زمان تحویل چقدر است؟</b><br> سفارش‌ها معمولا بین ۲ تا ۵ روز کاری تحویل داده می‌شوند.</p>
+      <p><b>آیا امکان بازگشت کالا وجود دارد؟</b><br> بله، تا ۷ روز پس از دریافت کالا می‌توانید درخواست بازگشت دهید.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
