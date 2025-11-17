@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
@@ -56,7 +56,7 @@
     li {
       margin: 10px 0;
       border-bottom: 1px solid #ddd;
-      padding: 8px;
+      padding: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -176,25 +176,43 @@
       .total { font-size: 18px; }
       .btn { width: 100%; text-align: center; }
 
-      /* تغییرات مهم برای آیتم‌ها */
       li {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        text-align: right;
+        padding: 12px;
       }
 
-      li div {
-        width: 100%;
-        margin-top: 8px;
-        justify-content: space-between;
+      /* بخش بالای هر آیتم: تصویر + متن */
+      li > div:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        margin-bottom: 10px;
       }
 
       li img {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+      }
+
+      li span {
+        font-size: 15px;
+      }
+
+      /* بخش پایین: دکمه‌ها */
+      li > div:last-child {
+        display: flex;
+        justify-content: flex-start;
+        gap: 8px;
+        flex-wrap: wrap;
       }
 
       .qty-btn, .remove-btn {
-        margin-top: 5px;
+        margin: 0;
+        flex: none;
       }
     }
   </style>
@@ -241,7 +259,7 @@
         const li = document.createElement('li');
         li.innerHTML = `
   <div style="flex: 1; display:flex; align-items:center; gap:10px; direction:ltr; text-align:left;">
-    <img src="${item.image || 'images/default.png'}" alt="${item.product}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
+        <img src="${item.image || 'images/default.png'}" alt="${item.product}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
     <span style="unicode-bidi: plaintext;">${item.product}</span>
     <span>- ${(item.price * item.quantity).toLocaleString()} تومان</span>
   </div>
@@ -321,3 +339,5 @@
   </script>
 </body>
 </html>
+
+
