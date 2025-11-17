@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
@@ -183,7 +183,6 @@
         padding: 12px;
       }
 
-      /* بخش بالای هر آیتم: تصویر + متن */
       li > div:first-child {
         display: flex;
         align-items: center;
@@ -202,7 +201,6 @@
         font-size: 15px;
       }
 
-      /* بخش پایین: دکمه‌ها */
       li > div:last-child {
         display: flex;
         justify-content: flex-start;
@@ -224,10 +222,10 @@
     <p id="cart-total" class="total">مجموع: 0 تومان</p>
     <div style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;">
       <a href="index.html" class="btn">⬅️ بازگشت به فروشگاه</a>
-      <button class="btn" onclick="showCheckout()">ادامه فرآیند خرید ➡️</button>
+      <!-- دکمه با id -->
+      <button id="checkout-btn" class="btn" onclick="showCheckout()">ادامه فرآیند خرید ➡️</button>
     </div>
 
-    <!-- فرم اطلاعات مشتری -->
     <div id="checkout-form" class="checkout-form">
       <h3>اطلاعات مشتری</h3>
       <label>نام:</label>
@@ -258,25 +256,39 @@
 
         const li = document.createElement('li');
         li.innerHTML = `
-  <div style="flex: 1; display:flex; align-items:center; gap:10px; direction:ltr; text-align:left;">
-        <img src="${item.image || 'images/default.png'}" alt="${item.product}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
-    <span style="unicode-bidi: plaintext;">${item.product}</span>
-    <span>- ${(item.price * item.quantity).toLocaleString()} تومان</span>
-  </div>
-  <div style="display: flex; align-items: center;">
-    <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
-    <span style="margin: 0 5px;">${item.quantity}</span>
-    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-    <button class="remove-btn" onclick="removeItem(${index})">حذف</button>
-  </div>
-`;
-
+          <div style="flex: 1; display:flex; align-items:center; gap:10px; direction:ltr; text-align:left;">
+            <img src="${item.image || 'images/default.png'}" 
+     alt="${item.product}" 
+     style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
+<span style="unicode-bidi: plaintext;">${item.product}</span>
+<span>- ${(item.price * item.quantity).toLocaleString()} تومان</span>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+            <span style="margin: 0 5px;">${item.quantity}</span>
+            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+            <button class="remove-btn" onclick="removeItem(${index})">حذف</button>
+          </div>
+        `;
         itemsList.appendChild(li);
         total += item.price * item.quantity;
       });
 
       document.getElementById('cart-total').innerText =
         "مجموع: " + total.toLocaleString() + " تومان";
+
+      // بررسی خالی بودن سبد و غیرفعال کردن دکمه ادامه خرید
+      const checkoutBtn = document.getElementById('checkout-btn');
+      if (cart.length === 0) {
+        itemsList.innerHTML = "<p>سبد خرید شما خالی است 🛒</p>";
+        checkoutBtn.disabled = true;
+        checkoutBtn.style.opacity = "0.5";
+        checkoutBtn.style.cursor = "not-allowed";
+      } else {
+        checkoutBtn.disabled = false;
+        checkoutBtn.style.opacity = "1";
+        checkoutBtn.style.cursor = "pointer";
+      }
     }
 
     function removeItem(index) {
@@ -310,17 +322,13 @@
 
       if(fname && lname && address && phone && cart.length > 0){
         alert("سفارش شما ثبت شد ✅");
-
-        // خالی کردن سبد خرید
-        localStorage.removeItem('cart');
-
-        // می‌توانی اطلاعات مشتری را هم ذخیره کنی یا به صفحه‌ی تشکر منتقل شوی
+        localStorage.removeItem('cart'); // خالی کردن سبد خرید
       } else {
         alert("لطفاً همه فیلدها را پر کنید ❗");
       }
     }
 
-    // جلوگیری از زوم با Ctrl + Scroll یا pinch zoom
+    // جلوگیری از زوم
     document.addEventListener('wheel', function(e) {
       if (e.ctrlKey) e.preventDefault();
     }, { passive: false });
@@ -339,5 +347,3 @@
   </script>
 </body>
 </html>
-
-
