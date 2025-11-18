@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>فروشگاه حضوری محمدرضا</title>
+  <link href="https://cdn.jsdelivr.net/npm/vazir-font@26.0.2/dist/font-face.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    * { font-family: Vazir, sans-serif !important; box-sizing: border-box; user-select: none; }
+    body { margin: 0; background: linear-gradient(135deg, #f0f4f1, #dfe6e2); overflow-x: hidden; touch-action: manipulation; }
+    html { scroll-behavior: smooth; }
+
+    .topbar { background: linear-gradient(90deg, #1b4332, #2d6a4f); color: #fff; text-align: center; padding: 20px; font-size: 26px; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); animation: slideDown 1s ease; }
+    @keyframes slideDown { from {transform: translateY(-100%); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+
+    .content { padding: 30px; text-align: center; animation: fadeInUp 1.2s ease; color: #1b4332; }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+
+    .store-card { max-width: 600px; margin: auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.25); overflow: hidden; text-align: center; padding: 20px; animation: zoomIn 1s ease; }
+    @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    .store-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.3); transition: all 0.4s ease; }
+
+    .store-card h3 { margin: 10px 0; font-size: 20px; color: #1b4332; }
+    .store-card p { font-size: 16px; margin: 6px 0; color: #2d6a4f; }
+
+    .store-card a.call-btn { display: inline-block; background: linear-gradient(90deg, #2d6a4f, #40916c); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 8px; transition: all 0.3s ease; font-size: 15px; margin-top: 10px; }
+    .store-card a.call-btn:hover { background: #52b788; transform: scale(1.08); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+    iframe { border: 0; border-radius: 12px; margin-top: 15px; width: 100%; height: 300px; }
+
+    @media (max-width: 600px) {
+      .store-card { padding: 15px; }
+      .store-card h3 { font-size: 18px; }
+      .store-card p { font-size: 14px; }
+      .store-card a.call-btn { width: 100%; font-size: 14px; }
+      iframe { height: 220px; }
+    }
+    .phone-link {
+  color: inherit;       /* رنگ متن مثل بقیه متن */
+  text-decoration: none; /* خط زیر لینک حذف شود */
+  font-weight: normal;   /* وزن فونت معمولی */
+  cursor: pointer;       /* نشانگر موس مثل لینک باقی بماند */
+}
+.phone-link:hover {
+  color: inherit;        /* حتی روی hover هم تغییر نکند */
+  text-decoration: none;
+}
+.back-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #2d6a4f, #40916c); /* سبز تیره تا سبز روشن */
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 15px;       /* فاصله از نقشه */
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  background: #52b788;    /* سبز روشن‌تر هنگام هاور */
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+  </style>
+</head>
+<body>
+  <div class="topbar">🏬 فروشگاه حضوری محمدرضا</div>
+  <div class="content">
+    <div class="store-card">
+      <h3>شعبه شهریار</h3>
+      <p>📍 آدرس: شهریار، سعیدآباد، خیابان خلج، کوچه شهید محمود زند</p>
+      <p>⏰ ساعات کاری: شنبه تا پنجشنبه 10:00 تا 21:00</p>
+      <p>📞 تلفن: <a href="tel:09927571901" class="phone-link">09927571901</a></p>
+      <iframe
+  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3239.0!2d51.187362!3d35.668327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1731940000000!5m2!1sen!2s"
+  width="100%" height="300"
+  style="border:0; border-radius:12px;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+<!-- دکمه بازگشت زیر نقشه -->
+  <a href="index.html" class="back-btn">⬅️ بازگشت به فروشگاه</a>
+</div>
+  </div>
+
+  <script>
+    // جلوگیری از Ctrl + Scroll
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
+    // جلوگیری از Ctrl + +/- یا Ctrl + 0
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')) {
+        e.preventDefault();
+      }
+    });
+
+    // جلوگیری از pinch zoom در موبایل
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
